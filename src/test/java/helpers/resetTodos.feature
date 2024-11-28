@@ -1,6 +1,6 @@
 Feature: Helper to reset all todos
 
-Scenario: Reset all todos
+  Scenario: Reset all todos
     Given url 'http://localhost:8080/api/reset'
     When method Get
     Then status 200
