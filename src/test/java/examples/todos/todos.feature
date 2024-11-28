@@ -53,8 +53,5 @@ Feature: Karate Basic Todos
     # Check all response objects
     * match each response contains { complete: '#boolean' }
 
-    # Clear all todos
-    Given url 'http://localhost:8080/api/reset'
-    When method Get
-    Then status 200
-    And match response == { deleted: '#number' }
+    * call read('classpath:helpers/resetTodos.feature')
+    
