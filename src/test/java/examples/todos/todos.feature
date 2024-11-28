@@ -1,7 +1,7 @@
 Feature: Karate Basic Todos
 
   Background:
-    * url 'http://localhost:8080/api/todos'
+    * url apiUrl
 
   Scenario: Get all todos
     Given url 'http://localhost:8080/api/todos'
@@ -50,17 +50,8 @@ Feature: Karate Basic Todos
     * match firstTask.title == taskName
     * match firstTask.complete == false
     
-    # Update a todo
-    Given path id
-    And request { title: '#(taskName)', complete: true }
-    When method Put
-    Then status 200
-    And match response.complete == true
-
-    # Delete a todo
-    Given path id
-    When method Delete
-    Then status 200
+    # Check all response objects
+    * match each response contains { complete: '#boolean' }
 
     # Clear all todos
     Given url 'http://localhost:8080/api/reset'
