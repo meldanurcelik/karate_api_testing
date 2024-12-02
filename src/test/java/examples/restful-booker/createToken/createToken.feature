@@ -4,7 +4,7 @@ Feature: Create token
     Given url baseUrl
     And path 'auth'
 
-  @create_token_caller
+    @create_token_caller
   Scenario:
     * def requestBody = { "username": "admin", "password": "password123" }  
     And request requestBody
