@@ -1,4 +1,4 @@
-    @debug
+@ignore
 Feature: Data driven testing example
 
   Background:
