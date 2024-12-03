@@ -13,6 +13,7 @@
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.surefire.version>3.0.0</maven.surefire.version>
         <karate.version>1.5.0</karate.version>
+        <cucumber.reporting>5.6.0</cucumber.reporting>
     </properties>    
 
     <dependencies>
@@ -20,6 +21,12 @@
             <groupId>io.karatelabs</groupId>
             <artifactId>karate-junit5</artifactId>
             <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+         <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>${cucumber.reporting}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
