@@ -1,3 +1,4 @@
+@ignore
 Feature: Create booking Caller
 
   Background:
@@ -10,7 +11,7 @@ Feature: Create booking Caller
 
     @create_booking_caller
   Scenario: Create Booking
-    * def requestBody = read('classpath:examples/restful-booker/model/createUpdateBooking.json')
+    * def requestBody = read('classpath:model/createUpdateBooking.json')
     And request requestBody
     When method post
     Then status 200

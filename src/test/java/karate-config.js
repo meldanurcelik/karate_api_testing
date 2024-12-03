@@ -8,7 +8,8 @@ function fn() {
     env: env,
     myVarName: 'someValue',
     // apiUrl: 'http://localhost:8080/api/todos'
-    baseUrl: 'https://restful-booker.herokuapp.com/'
+    baseUrl: 'https://restful-booker.herokuapp.com/',
+    reqresBaseUrl: 'https://reqres.in/'
   }
   var createTokenResult = karate.callSingle('classpath:examples/restful-booker/createToken/createToken.feature@create_token_caller', config);
   config.generalToken = createTokenResult.response.token;
