@@ -23,7 +23,7 @@ public class CucumberRunner {
         // mvn clean test -Dtest="CucumberRunner#testAll" -Dkarate.options="--tags
         // @regression"
         List<String> tagList = Arrays.asList("~@excluded", "~@wip");
-        Results results = Runner.path("classpath:features").tags(tagList).outputCucumberJson(true).parallel(0);
+        Results results = Runner.path("classpath:examples/reqres").tags(tagList).outputCucumberJson(true).parallel(0);
         generateReport(results.getReportDir());
     }
 
@@ -31,7 +31,7 @@ public class CucumberRunner {
     void testSmoke() {
         // run command line: mvn test -Dtest="CucumberRunner#testSmoke"
         List<String> tagList = Arrays.asList("@smoke", "~@excluded", "~@wip");
-        Results results = Runner.path("classpath:features").tags(tagList).outputCucumberJson(true).parallel(0);
+        Results results = Runner.path("classpath:examples/reqres").tags(tagList).outputCucumberJson(true).parallel(0);
         generateReport(results.getReportDir());
     }
 
@@ -42,7 +42,8 @@ public class CucumberRunner {
         String threadCount = System.getProperty("count");
         List<String> tagList = Arrays.asList("~@excluded", "~@wip");
         int count = (threadCount == null) ? 5 : parseInt(threadCount);
-        Results results = Runner.path("classpath:features").tags(tagList).outputCucumberJson(true).parallel(count);
+        Results results = Runner.path("classpath:examples/reqres").tags(tagList).outputCucumberJson(true)
+                .parallel(count);
         generateReport(results.getReportDir());
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
@@ -56,6 +57,10 @@ public class CucumberRunner {
         config.setBuildNumber(System.getProperty("buildNumber"));
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
-
     }
+    // mvn clean test -Dtest="CucumberRunner#testAll"
+    // mvn clean test -Dtest="CucumberRunner#testAll" -DbuildNumber="melda"
+    // mvn clean test -Dtest="CucumberRunner#testAll" -DbuildNumber=4445
+    // mvn clean test -Dtest="CucumberRunner#testParallel" "-Dkarate.options=--tags @update_req_res" -Dcount=10
+    // mvn clean test -Dtest="CucumberRunner#testParallel" "-Dkarate.options=--tags get_req_res,@update_req_res" -Dcount=10
 }
